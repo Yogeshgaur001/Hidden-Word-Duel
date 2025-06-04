@@ -19,7 +19,11 @@ import { OnEvent } from '@nestjs/event-emitter';
 import { Logger, UsePipes, ValidationPipe } from '@nestjs/common';
 
 @WebSocketGateway({
-  cors: { origin: '*' },
+  cors: {
+    origin: 'http://localhost:3000', // Frontend origin
+    methods: ['GET', 'POST'],
+    credentials: true,
+  },
 })
 export class GameGateway implements OnGatewayDisconnect, OnGatewayConnection {
   @WebSocketServer()
